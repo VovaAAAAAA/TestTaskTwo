@@ -80,14 +80,21 @@
     <Compile Include="Assets\Scripts\Bank\Money.cs" />
     <Compile Include="Assets\Scripts\Bank\UIMoney.cs" />
     <Compile Include="Assets\Scripts\Bank\ViewMoney.cs" />
-    <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Controller.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Bear.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Cat.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyVisitor.cs" />
+    <Compile Include="Assets\Scripts\Enemy\IEnemyVisitor.cs" />
+    <Compile Include="Assets\Scripts\Enemy\Pig.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\IDamageble.cs" />
     <Compile Include="Assets\Scripts\СubeRotate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AssetsMaterials\Epic Toon FX\Prefabs\Environment\Environment FX.txt" />
     <None Include="Assets\AssetsMaterials\Epic Toon FX\Prefabs\Combat\Combat FX.txt" />
     <None Include="Assets\AssetsMaterials\Epic Toon FX\Changelog.txt" />
-    <None Include="Assets\_www.unityassetcollection.com.txt" />
     <None Include="Assets\AssetsMaterials\Epic Toon FX\Prefabs\Interactive\Interactive FX.txt" />
     <None Include="Assets\AssetsMaterials\Epic Toon FX\Upgrade\URP Compatibility.txt" />
     <None Include="Assets\AssetsMaterials\Low Poly Rocks Pack\Demo\Asset _Scenes\Info.txt" />
@@ -657,6 +664,14 @@
     <ProjectReference Include="Polyperfect.Common.csproj">
       <Project>{0B978DB8-B56C-A29D-54DD-8A9691BAD005}</Project>
       <Name>Polyperfect.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="NavMeshComponentsEditor.csproj">
+      <Project>{CA224174-F0B4-CC47-752F-5180D91AB6F2}</Project>
+      <Name>NavMeshComponentsEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="NavMeshComponents.csproj">
+      <Project>{37C294FC-BB82-AB83-6F52-6FE97E3D0C2B}</Project>
+      <Name>NavMeshComponents</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
