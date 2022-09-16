@@ -8,7 +8,6 @@ public class Cat : Enemy, IDamageble
     private Animator _animator;
     private GameObject _player;
 
-    private bool _getCorrectPoint;
     private Vector3 _randomPosition;
     [SerializeField] private Transform _fightZone;
 
@@ -60,16 +59,16 @@ public class Cat : Enemy, IDamageble
 
     public void RetreatCalculatePath()
     {
-        _getCorrectPoint = false;
-        while (!_getCorrectPoint)
+        GetCorrectPoint = false;
+        while (!GetCorrectPoint)
         {
             NavMeshHit _navMeshHit;
-            NavMesh.SamplePosition(Random.insideUnitSphere * 10 + _fightZone.position, out _navMeshHit, 10, NavMesh.AllAreas);
+            NavMesh.SamplePosition(Random.insideUnitSphere * 5 + _fightZone.position, out _navMeshHit, 10, NavMesh.AllAreas);
             _randomPosition = _navMeshHit.position;
 
             if (NavMesh.CalculatePath(transform.position, _randomPosition, NavMesh.AllAreas, _navMeshPath))
             {
-                if (_navMeshPath.status == NavMeshPathStatus.PathComplete) _getCorrectPoint = true;
+                if (_navMeshPath.status == NavMeshPathStatus.PathComplete) GetCorrectPoint = true;
                 _animator.SetBool("isAttack", false);
                 _animator.SetBool("isRun", true);
             }
@@ -78,7 +77,7 @@ public class Cat : Enemy, IDamageble
         _agent.isStopped = false;
     }
 
-    public void Retrect()
+    public override void Retrect()
     {
         var distance = (_randomPosition - transform.position).magnitude;
 
@@ -88,26 +87,18 @@ public class Cat : Enemy, IDamageble
         }
         else
         {
+            GetCorrectPoint = false;
             _agent.isStopped = true;
             _animator.SetBool("isRun", false);
             transform.LookAt(_player.transform.position);
         }
     }
 
-    protected override void Attack(int damage)
+    protected override void Attack()
     {
-        Controller _playerController = _player.GetComponent<Controller>();
-        _playerController.Health -= damage;
-    }
-
-    private void Update()
-    {
-        if(!_getCorrectPoint)
-            Move();
-        else
+        if(_player.TryGetComponent(out IDamageble damageble))
         {
-            Retrect();
+            damageble.TakeDamage(_damage);
         }
-            
     }
 }
